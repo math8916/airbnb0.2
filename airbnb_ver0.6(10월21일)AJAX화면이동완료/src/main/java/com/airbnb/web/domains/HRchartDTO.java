@@ -9,14 +9,15 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Component @Lazy
+@Component
 @Data
-
-public class BookingDTO implements Serializable {/**
+@Lazy
+public class HRchartDTO implements Serializable {/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	   @Getter @Setter private String resv_seq,checkin_date,checkout_date,guest_cnt,house_seq,email;
+	@Getter @Setter private String hchart_year,hchart_month,rchart_year,rchart_month;
+	@Getter @Setter private int hchart_count,rchart_count;
 	
 
 }

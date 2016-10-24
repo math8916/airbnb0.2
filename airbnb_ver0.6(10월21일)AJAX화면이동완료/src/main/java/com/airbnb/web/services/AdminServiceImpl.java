@@ -12,9 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.airbnb.web.controllers.AdminController;
 import com.airbnb.web.domains.AdminDTO;
+import com.airbnb.web.domains.BookingDTO;
+import com.airbnb.web.domains.HRchartDTO;
+import com.airbnb.web.domains.HchartDTO;
+import com.airbnb.web.domains.HostingDTO;
+import com.airbnb.web.domains.MchartDTO;
+import com.airbnb.web.domains.RchartDTO;
 import com.airbnb.web.domains.Retval;
 import com.airbnb.web.mappers.AdminMapper;
-import com.airbnb.web.util.Command;
 
 
 
@@ -26,12 +31,7 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired	private AdminDTO email;
 /*	@Autowired  private Command command ;*/
 	@Autowired  private Retval retval ;
-	@Override
-	public List<AdminDTO> list() {
-		// TODO Auto-generated method stub
-		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
-		return mapper.list();
-	}
+	
 	@Override
 	public List<AdminDTO> find() {
 		// TODO Auto-generated method stub
@@ -58,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
 		
-			
+		logger.info("----- ADMIN_CONTOLLER mcount -----{}",mapper.mcount().getCount());	
 		return  mapper.mcount();
 	}
 	@Override
@@ -81,7 +81,44 @@ AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	@Override
+	public List<HostingDTO> hlist() {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return mapper.hlist();
 	
+	}
+	@Override
+	public List<BookingDTO> rlist() {
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return mapper.rlist();
+	
+	}
+
+	@Override
+	public List<AdminDTO> list() {
+		// TODO Auto-generated method stub
+		AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+		return mapper.list();
+	}
+	@Override
+	public List<MchartDTO> mchart() {
+		AdminMapper mapper =sqlSession.getMapper(AdminMapper.class);
+		return mapper.mchart();
+	}
+	@Override
+	public List<HchartDTO> hchart() {
+		AdminMapper mapper =sqlSession.getMapper(AdminMapper.class);
+		return mapper.hchart();
+	}
+	@Override
+	public List<RchartDTO> rchart() {
+		AdminMapper mapper =sqlSession.getMapper(AdminMapper.class);
+		return mapper.rchart();
+	}
+	@Override
+	public List<HRchartDTO> HRchart() {
+		AdminMapper mapper =sqlSession.getMapper(AdminMapper.class);
+		return null;
+	}
 	
 }

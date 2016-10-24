@@ -1,5 +1,5 @@
 SELECT * from member;
-
+show tables;
 -- houses
 ALTER TABLE houses
 	DROP FOREIGN KEY FK_member_TO_houses; -- member -> houses

@@ -65,24 +65,9 @@ public class AdminController {
 		retval.setMessage("success");
 		return retval;
 	}	
-	@RequestMapping("/mlist")
-	public @ResponseBody Retval adminList(){
-		logger.info("----- ADMIN_CONTOLLER adminlist -----");
-		retval.setMessage("success");
-		return retval;
-	}
-	@RequestMapping("/rlist")
-	public @ResponseBody Retval adminRevList(){
-		logger.info("----- ADMIN_CONTOLLER REVlist -----");
-		retval.setMessage("success");
-		return retval;
-	}
-	@RequestMapping("/hlist")
-	public @ResponseBody Retval adminHouseList(){
-		logger.info("----- ADMIN_CONTOLLER HOUSElist -----");
-		retval.setMessage("success");
-		return retval;
-	}
+
+	
+
 	@RequestMapping("/search")
 	public @ResponseBody Retval adminSearch(){
 		logger.info("----- ADMIN_CONTOLLER search -----");
@@ -97,14 +82,58 @@ public class AdminController {
 		logger.info("----- ADMIN_CONTOLLER map size ----- {}",map.size());
 		return map;
 	}
+	@RequestMapping("/hlist")
+	public @ResponseBody HashMap<String,Object> hlist(ModelMap model){
+			
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("list",service.hlist());
+		logger.info("----- ADMIN_CONTOLLER map size ----- {}",map.size());
+		return map;
+	}
+	@RequestMapping("/rlist")
+	public @ResponseBody HashMap<String,Object> rlist(ModelMap model){
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		logger.info("----- ADMIN_CONTOLLER REVlist -----");
+		map.put("list",service.rlist());
+		return map;
+	}
 	@RequestMapping("/mchart")
-	public String admiMnav(){
-		logger.info("----- ADMIN_CONTOLLER NAV PASS -----");
-		return "admin/mchart.jsp";
+	public @ResponseBody HashMap<String, Object> adminMchart(ModelMap model){
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		
+		logger.info("----- ADMIN_CONTOLLER mchart PASS -----");
+		map.put("mchart", service.mchart());
+		return map;
+	}
+	@RequestMapping("/rchart")
+	public @ResponseBody HashMap<String, Object> adminHchart(ModelMap model){
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		
+		logger.info("----- ADMIN_CONTOLLER mchart PASS -----");
+		map.put("rchart", service.rchart());
+		return map;
+	}
+	@RequestMapping("/hchart")
+	public @ResponseBody HashMap<String, Object> adminRchart(ModelMap model){
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		
+		logger.info("----- ADMIN_CONTOLLER mchart PASS -----");
+		map.put("hchart", service.hchart());
+		return map;
+	}
+	@RequestMapping("/hrchart")
+	public @ResponseBody HashMap<String, Object> adminHRchart(ModelMap model){
+		HashMap<String, Object> map = new HashMap<String,Object>();
+		
+		logger.info("----- ADMIN_CONTOLLER mchart PASS -----");
+		map.put("hchart", service.hchart());
+		map.put("rchart", service.rchart());
+		return map;
 	}
 	@RequestMapping("/mcount")
 	public @ResponseBody Retval mcount(){
-		logger.info("----- ADMIN_CONTOLLER mcount -----");
+		logger.info("----- ADMIN_CONTOLLER mcount -----{}",service.mcount());
 		Retval retval = service.mcount();
 		
 		return retval;

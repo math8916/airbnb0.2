@@ -1,3 +1,18 @@
+   function drawChart() {
+      var jsonData = $.ajax({
+          url: "sample.json",
+          dataType: "json",
+          async: false
+          }).responseText;
+          
+      // Create our data table out of JSON data loaded from server.
+      var data = new google.visualization.DataTable(jsonData);
+
+      // Instantiate and draw our chart, passing in some options.
+      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+      chart.draw(data, {width: 400, height: 240});
+    }
+
 var admin =(function(){
 	var init =function(context){
 		onCreate();};
@@ -10,7 +25,7 @@ var admin =(function(){
 		setContentView();
 		$('#admin_main').click(function(){
 			$.ajax({
-				url: admin.context()+'/admin/admin_main',
+				url:admin.context()+'/admin/admin_main',
 				success:function(data){
 					if(data.message ==='success'){
 						$('#admin_article').empty().html(ADMIN_MAIN);
@@ -60,12 +75,11 @@ var admin =(function(){
 			admin.rlist();
 		});
 		$('#admin_nav_chart').click(function(){
-			alert('차트 클릭');
 			$.ajax({
 				url:admin.context()+'/admin/chart',
 				success:function(data){
 					if (data.message==="success") {
-						$('#admin_article').empty().html(ADMIN_CHART);
+						$('#admin_article').empty().html(ADMIN_MCHART);
 					}else{
 						ALERT('SUCCESS ERROR chart ')
 					}
@@ -90,6 +104,27 @@ var admin =(function(){
 				}
 			});	
 		});
+		/* jqgrid */
+		$('#test').click(function(){
+			alert('test');
+			$.ajax({
+				url:admin.context()+'/admin/good',
+				success:function(data){
+					alert('inputdata : {}'+data.message);
+					if (data.message==="success") {
+				
+						$('#admin_article').empty().html(TEST_LIST);
+						admin.testlist();
+					} else {
+						alert('error');	
+					}
+				},
+				error: function(x,e,m) {
+					alert('error  -----'+m);	
+				}
+			});
+		});
+	
 	};
 	  return{
           init : init,
@@ -144,7 +179,27 @@ var admin =(function(){
   					alert("admin nav Rlist error : " +m)
   				}
   			});
-          }
+          },
+      	testlist:function(){
+		    $("#list").jqGrid({ 
+		        //ajax 호출할 페이지
+		        url:admin.context()+'/admin/test',
+		        //로딩중일때 출력시킬 로딩내용
+		        loadtext : '로딩중..',
+		        //응답값
+		        datatype: "json",
+		        height: 250,
+		        colNames:['시퀀스','제목', '등록일', '등록자명','조회수'],
+		        colModel:[
+		            {name:'seq'},
+		            {name:'title'},
+		            {name:'create_date'},
+		            {name:'create_name'},
+		            {name:'hitnum'}    
+		        ],
+		        caption: "그리드 목록"
+		    });
+		}
        
   }
 })();
@@ -1023,3 +1078,77 @@ var ADMIN_MAIN =
 	+'</div>'
 	+'</div>'
 	+'</article>'
+	/*
+	=============== Mchart_js ===============
+	@AUTHOR :math89@gmail.com
+	@CREATE DATE: 2016-10-19
+	@UPDATE DATE: 2016-10-19
+	@DESC :월별 회원 가입
+	=============== ADMIN ===============
+	*/
+	
+  
+	var ADMIN_MCHART=
+		'<article id="admin_article">'
+		+'<div id="page-wrapper">'
+		+'<div id="page-inner">'
+		+'<div class="row">'
+		+'<div class="col-md-12">'
+		+'<h1 class="page-header">'
+		+'통계<small>회원 호스팅 예약 관련 통계 자료 </small>'
+		+'</h1>'
+		+'</div>'
+		+'</div>'
+		+'<!-- /. ROW -->'
+		+'<div class="row">'
+		+'<div class="col-md-6 col-sm-12 col-xs-12">'
+		+'<div class="panel panel-default">'
+		+'<div class="panel-heading">2016년 월별 회원 가입 현황</div>'
+		+'<div class="panel-body">'
+		+'<div id="chart_div" style="width: 800px; height: 400px;"></div>'
+		+'</div>'
+		+'</div>'
+		+'</div>'
+		+'</div>'
+		+'<head>'
+		+'<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>'
+		+'</article>'
+		
+var TEST_LIST=
+			'<article id="admin_article">'
+			+'<div id="page-wrapper" >'
+			+'<div id="page-inner">'
+			+'<div class="row">'
+			+'<div class="col-md-12">'
+			+'<h1 class="page-header">'
+			+'회원  <small>가입 리스트</small>'
+			+'</h1>'
+			+'</div>'
+			+'</div>'
+			+'<!-- /. ROW  -->'
+			+'<div class="row">'
+			+'<div class="col-md-12">'
+			+'<!-- Advanced Tables -->'
+			+'<div class="panel panel-default">'
+			+'<div class="panel-heading">'
+			+'회원리스트'
+			+'</div>'
+			+'<div class="panel-body">'
+			+'<div class="table-responsive">'
+			+'<table class="table table-striped table-bordered table-hover" id="list">'
+			+'<div id="page"></div>'
+			+'</table>'
+			+'</div>'
+			+'</div>'
+			+'</div>'
+			+'<!--End Advanced Tables -->'
+			+'<!--  end  Context Classes  -->'
+			+'</div>'
+			+'</div>'
+			+'<!-- /. ROW  -->'
+			+'</div>'
+			+'</article>'
+		
+
+
+
