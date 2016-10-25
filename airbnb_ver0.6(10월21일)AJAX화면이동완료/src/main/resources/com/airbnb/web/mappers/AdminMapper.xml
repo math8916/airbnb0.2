@@ -10,10 +10,10 @@
 		call mcount()
 	</select>
 	<select id="hcount" resultType="com.airbnb.web.domains.Retval">
-		select count(*) as count from houses
+		call hcount()
 	</select>
 	<select id="rcount" resultType="com.airbnb.web.domains.Retval">
-		select count(*) as count from reservation
+		call rcount()
 	</select>
 
 	<select id="list" resultType="com.airbnb.web.domains.AdminDTO"

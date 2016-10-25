@@ -79,7 +79,7 @@ public class AdminController {
 			
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("list",service.list());
-		logger.info("----- ADMIN_CONTOLLER map size ----- {}",map.size());
+		logger.info("----- ADMIN_CONTOLLER list ----- {}",service.list());
 		return map;
 	}
 	@RequestMapping("/hlist")
@@ -102,7 +102,7 @@ public class AdminController {
 	public @ResponseBody HashMap<String, Object> adminMchart(ModelMap model){
 		HashMap<String, Object> map = new HashMap<String,Object>();
 		
-		logger.info("----- ADMIN_CONTOLLER mchart PASS -----");
+		logger.info("----- ADMIN_CONTOLLER mchart PASS -----{}",service.mchart());
 		map.put("mchart", service.mchart());
 		return map;
 	}
@@ -133,7 +133,7 @@ public class AdminController {
 	}
 	@RequestMapping("/mcount")
 	public @ResponseBody Retval mcount(){
-		logger.info("----- ADMIN_CONTOLLER mcount -----{}",service.mcount());
+		logger.info("----- ADMIN_CONTOLLER mcount -----{}",service.mcount().getCount());
 		Retval retval = service.mcount();
 		
 		return retval;

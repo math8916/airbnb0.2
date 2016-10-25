@@ -1,18 +1,3 @@
-   function drawChart() {
-      var jsonData = $.ajax({
-          url: "sample.json",
-          dataType: "json",
-          async: false
-          }).responseText;
-          
-      // Create our data table out of JSON data loaded from server.
-      var data = new google.visualization.DataTable(jsonData);
-
-      // Instantiate and draw our chart, passing in some options.
-      var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-      chart.draw(data, {width: 400, height: 240});
-    }
-
 var admin =(function(){
 	var init =function(context){
 		onCreate();};
@@ -52,12 +37,95 @@ var admin =(function(){
 			
 		});
 		$('#admin_nav_mlist').click(function(){
-			alert('click mlist');
-			admin.mlist();
+			 $.ajax({  
+				 url: admin.context()+'/admin/list', 
+				   datatype: "json",
+			    	mtype: "get",
+			    	success: function(data) {
+						console.log(data);
+						$(function() {
+							$Grid=$('#grid')
+							$("#grid").jqGrid({
+						    	url: admin.context()+'/admin/list', 
+						    	datatype: "json",
+						    	mtype: "get",
+						    	jsonReader : {
+						            email : "email" // 대표 아이디를 설정
+						            ,root : "list" // 데이터의 시작을 설정
+						       },
+						     colNames : ['email',
+						         'name',
+						         'phone',
+						         'proFileIMG',
+						         'regDate'
+						              ],
+						     colModel : [
+						      { name : 'email',        width:120,  align:'center'},
+						         { name : 'name',       width:80,  align:'left'},
+						         { name : 'phone',      width:80,  align:'right' },
+						         { name : 'profileImg',      width:80,  align:'right' },
+						         { name : 'regDate',      width:80,  align:'right' },
+						     ],
+						     pager : '#pager',
+						     rowNum : '10',
+						     multiselect : true
+						 });
+						}
+				  );
+					},
+					error: function(x,h,m) {
+						alert('error'+m)
+					}
+				 });
+			 $('#admin_article').empty().html(TEST_LIST);
+				alert('click testlist');
+	
 		});
 		$('#admin_main_mlist').click(function(){
-			alert('click mlist');
-			admin.mlist();
+			 $.ajax({  
+				 url: admin.context()+'/admin/list', 
+				   datatype: "json",
+			    	mtype: "get",
+			    	success: function(data) {
+						console.log(data);
+						$(function() {
+							$Grid=$('#grid')
+							$("#grid").jqGrid({
+						    	url: admin.context()+'/admin/list', 
+						    	datatype: "json",
+						    	mtype: "get",
+						    	jsonReader : {
+						            email : "email" // 대표 아이디를 설정
+						            ,root : "list" // 데이터의 시작을 설정
+						       },
+						     colNames : ['email',
+						         'name',
+						         'phone',
+						         'proFileIMG',
+						         'regDate'
+						              ],
+						     colModel : [
+						      { name : 'email',        width:120,  align:'center'},
+						         { name : 'name',       width:80,  align:'left'},
+						         { name : 'phone',      width:80,  align:'right' },
+						         { name : 'profileImg',      width:80,  align:'right' },
+						         { name : 'regDate',      width:80,  align:'right' },
+						     ],
+						     pager : '#pager',
+						     rowNum : '10',
+						     multiselect : true
+						 });
+						}
+				       
+				  );
+					},
+					error: function(x,h,m) {
+						alert('error'+m)
+					}
+				 });
+		
+
+		
 		});
 		
 		$('#admin_nav_hlist').click(function(){
@@ -106,25 +174,49 @@ var admin =(function(){
 		});
 		/* jqgrid */
 		$('#test').click(function(){
-			alert('test');
-			$.ajax({
-				url:admin.context()+'/admin/good',
-				success:function(data){
-					alert('inputdata : {}'+data.message);
-					if (data.message==="success") {
-				
-						$('#admin_article').empty().html(TEST_LIST);
-						admin.testlist();
-					} else {
-						alert('error');	
+			 $.ajax({  
+				 url: admin.context()+'/admin/list', 
+				   datatype: "json",
+			    	mtype: "get",
+			    	success: function(data) {
+						console.log(data);
+						$(function() {
+							$Grid=$('#grid')
+							$("#grid").jqGrid({
+						    	url: admin.context()+'/admin/list', 
+						    	datatype: "json",
+						    	mtype: "get",
+						    	jsonReader : {
+						            email : "email" // 대표 아이디를 설정
+						            ,root : "list" // 데이터의 시작을 설정
+						       },
+						     colNames : ['email',
+						         'name',
+						         'phone',
+						         'proFileIMG',
+						         'regDate'
+						              ],
+						     colModel : [
+						      { name : 'email',        width:120,  align:'center'},
+						         { name : 'name',       width:80,  align:'left'},
+						         { name : 'phone',      width:80,  align:'right' },
+						         { name : 'profileImg',      width:80,  align:'right' },
+						         { name : 'regDate',      width:80,  align:'right' },
+						     ],
+						     pager : '#pager',
+						     rowNum : '10',
+						     multiselect : true
+						 });
+						}
+				  );
+					},
+					error: function(x,h,m) {
+						alert('error'+m)
 					}
-				},
-				error: function(x,e,m) {
-					alert('error  -----'+m);	
-				}
-			});
+				 });
+			 $('#admin_article').empty().html(TEST_LIST);
+				alert('click testlist');
 		});
-	
 	};
 	  return{
           init : init,
@@ -181,25 +273,27 @@ var admin =(function(){
   			});
           },
       	testlist:function(){
-		    $("#list").jqGrid({ 
+		    $("#list1").jqGrid({ 
 		        //ajax 호출할 페이지
-		        url:admin.context()+'/admin/test',
+		        url:admin.context()+'/admin/mlist',
 		        //로딩중일때 출력시킬 로딩내용
 		        loadtext : '로딩중..',
 		        //응답값
 		        datatype: "json",
 		        height: 250,
-		        colNames:['시퀀스','제목', '등록일', '등록자명','조회수'],
+		        colNames:['예약번호','체크인일자', '체크아웃일자', '투숙자수','호스팅번호','예약자이메일'],
 		        colModel:[
-		            {name:'seq'},
-		            {name:'title'},
-		            {name:'create_date'},
-		            {name:'create_name'},
-		            {name:'hitnum'}    
+		            {name:'resv_seq'},
+		            {name:'checkin_date'},
+		            {name:'checkout_date'},
+		            {name:'guest_cnt'},
+		            {name:'house_seq'},    
+		            {name:'email'}    
 		        ],
 		        caption: "그리드 목록"
 		    });
 		}
+	
        
   }
 })();
@@ -1121,7 +1215,7 @@ var TEST_LIST=
 			+'<div class="row">'
 			+'<div class="col-md-12">'
 			+'<h1 class="page-header">'
-			+'회원  <small>가입 리스트</small>'
+			+'회원  <small>예약 리스트</small>'
 			+'</h1>'
 			+'</div>'
 			+'</div>'
@@ -1133,11 +1227,12 @@ var TEST_LIST=
 			+'<div class="panel-heading">'
 			+'회원리스트'
 			+'</div>'
-			+'<div class="panel-body">'
-			+'<div class="table-responsive">'
-			+'<table class="table table-striped table-bordered table-hover" id="list">'
+		/*	+'<div class="panel-body">'
+			+'<div class="table-responsive">'*/
+		/*	+'<table class="table table-striped table-bordered table-hover" id="grid">'*/
+			+'<table  id="grid"> </table>'
 			+'<div id="page"></div>'
-			+'</table>'
+		
 			+'</div>'
 			+'</div>'
 			+'</div>'
@@ -1147,8 +1242,41 @@ var TEST_LIST=
 			+'</div>'
 			+'<!-- /. ROW  -->'
 			+'</div>'
-			+'</article>'
-		
+			+'</article>';
 
-
-
+/*test jqgrid*/		
+var $Grid={}; 
+$(window.document).ready(function() {
+	$Grid=$('#grid')
+	$("#grid").jqGrid({
+    	url: admin.context()+'/admin/list', 
+    	datatype: "jsonp",
+    	mtype: "get",
+    /*	jsonReader : {
+            email : "email" // 대표 아이디를 설정
+            ,root : "list" // 데이터의 시작을 설정
+       },*/
+     colNames : ['email',
+        
+         'name',
+         'phone',
+         'proIMG',
+         'regDate'
+              ],
+     colModel : [
+      { name : 'email',        width:40,  align:'center'},
+  
+         { name : 'name',       width:80,  align:'left'},
+         { name : 'phone',      width:80,  align:'right' },
+         { name : 'profileImg',      width:80,  align:'right' },
+         { name : 'regDate',      width:80,  align:'right' },
+     ],
+     pager : '#pager',
+     rowNum : '10',
+     multiselect : true
+   
+        
+     
+    
+ });
+}); 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import com.airbnb.web.domains.AdminDTO;
 import com.airbnb.web.domains.BookingDTO;
-import com.airbnb.web.domains.HRchartDTO;
 import com.airbnb.web.domains.HchartDTO;
 import com.airbnb.web.domains.HostingDTO;
 import com.airbnb.web.domains.MchartDTO;
@@ -31,7 +30,6 @@ public interface AdminService{
 	public List<MchartDTO> mchart();
 	public List<HchartDTO> hchart();
 	public List<RchartDTO> rchart();
-	public List<HRchartDTO> HRchart();
 	
 	public Retval regist(AdminDTO param);
 	public Retval update(AdminDTO param);
