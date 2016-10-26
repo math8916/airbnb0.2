@@ -430,7 +430,7 @@ var ADMIN_FOOTER =
 	+'<script src="/web/resources/js/morris/raphael-2.1.0.min.js"></script>'
 	+'<script src="/web/resources/js/morris/morris.js"></script>'
 	+'<!-- Custom Js -->'
-	+'<script src="/web/resources/js/custom-scripts.js"></script>'
+	+'<script src="/web/resources/js/morris/custom-scripts.js"></script>'
 	+'</body>'
 	+'</div>'
 	+'</footer>'

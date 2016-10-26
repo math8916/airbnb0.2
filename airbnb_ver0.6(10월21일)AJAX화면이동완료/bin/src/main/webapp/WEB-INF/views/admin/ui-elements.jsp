@@ -744,7 +744,7 @@
     <!-- Metis Menu Js -->
     <script src="assets/js/jquery.metisMenu.js"></script>
       <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+    <script src="assets/js/morris/custom-scripts.js"></script>
  
 </body>
 

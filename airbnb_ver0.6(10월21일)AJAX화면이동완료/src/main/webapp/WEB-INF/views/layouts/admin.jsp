@@ -9,6 +9,8 @@
 <c:set var="js" value="${context}/resources/js"/>
 <c:set var="ui" value="${context}/resources/jqueryui"/>
 <c:set var="jqgrid" value="${context}/resources/jqgrid"/>
+<c:set var="jquery-ui-black" value="${context}/resources/jquery-ui-black"/>
+<c:set var="Guriddo_jqGrid_JS" value="${context}/resources/Guriddo_jqGrid_JS"/>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,9 +19,12 @@
 	<link rel="stylesheet" href="${css}/bootstrap.css" type="text/css"/>
 	<link rel="stylesheet" href="${css}/custom-styles.css" type="text/css"/>
 	<link rel="stylesheet" href="${css}/font-awesome.css" type="text/css"/>
+<%-- 	<link rel="stylesheet" href="${ui}/jquery-ui.css" type="text/css"/> --%>
 	<!-- test jgrid -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/free-jqgrid/4.13.4/css/ui.jqgrid.min.css">
-
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/free-jqgrid/4.13.4/css/ui.jqgrid.min.css">
+ -->
+	<link rel="stylesheet" href="${css}/admin/jquery-ui.theme.min.css" type="text/css" media="screen"/> 
+	<link rel="stylesheet" href="${css}/admin/ui.jqgrid.css" type="text/css" media="screen"/> 
 	
 </head>
 <body>
@@ -54,12 +59,12 @@
 <script src="${js}/morris/raphael-2.1.0.min.js"></script>
 <script src="${js}/morris/morris.js"></script>
     <!-- Custom Js -->
-<script src="${js}/custom-scripts.js"></script>
+<script src="${js}/morris/custom-scripts.js"></script>
    
     
 <script src="${js}/inchul.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/free-jqgrid/4.13.4/js/i18n/grid.locale-de.min.js"></script>
+<script src="https://cdn.jsdelivr.net/free-jqgrid/4.13.4/js/i18n/grid.locale-en.min.js"></script>
 <script src="https://cdn.jsdelivr.net/free-jqgrid/4.13.4/js/jquery.jqgrid.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi">
 

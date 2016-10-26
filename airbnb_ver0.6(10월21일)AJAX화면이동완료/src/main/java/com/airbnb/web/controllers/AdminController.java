@@ -78,6 +78,7 @@ public class AdminController {
 	public @ResponseBody HashMap<String,Object> list(ModelMap model){
 			
 		HashMap<String,Object> map = new HashMap<String,Object>();
+	
 		map.put("list",service.list());
 		logger.info("----- ADMIN_CONTOLLER list ----- {}",service.list());
 		return map;
